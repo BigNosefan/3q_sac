@@ -1,25 +1,17 @@
 ENVNAME=InvertedDoublePendulum-v2
 NUMSTEP=50000
+GPU1 = 3
+GPU2 = 4
+SEED = 0
 
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 3 --alpha_f 0 > log_run_base_0.txt 2>&1 &
+for al_f in 0 0.1 0.2 0.3 0.4 
+do
+nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed $SEED --cuda --gpu $GPU1 --alpha_f $al_f > log_$al_f.txt 2>&1 &
 sleep 2
-nohup python main.py --num_steps  $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 3 --alpha_f 0.1 > log_run_base_1.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 3 --alpha_f 0.2 > log_run_base_2.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 3 --alpha_f 0.3 > log_run_base_3.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 3 --alpha_f 0.4 > log_run_base_4.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 4 --alpha_f 0.5 > log_run_base_5.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 4 --alpha_f 0.6 > log_run_base_6.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 4 --alpha_f 0.7 > log_run_base_7.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 4 --alpha_f 0.8 > log_run_base_8.txt 2>&1 &
-sleep 2
-nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed 0 --cuda --gpu 4 --alpha_f 0.9 > log_run_base_9.txt 2>&1 &
-sleep 2
+done 
 
-
+for al_f in 0.5 0.6 0.7 0.8 0.9
+do
+nohup python main.py --num_steps $NUMSTEP --env-name $ENVNAME --seed $SEED --cuda --gpu $GPU2 --alpha_f $al_f > log_$al_f.txt 2>&1 &
+sleep 2
+done
